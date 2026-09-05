@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Termux List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@600;700;800&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f9;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.4) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(186, 230, 253, 0.5) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(221, 214, 254, 0.4) 0%, transparent 30%);
+            min-height: 100vh;
+        }
+
+        .title-font {
+            font-family: 'Changa', sans-serif;
+        }
+
+        /* Claymorphism & Bubble Effect */
+        .bubble-card {
+            background: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 
+                20px 20px 60px #d4d9e0, 
+                -20px -20px 60px #ffffff,
+                inset 0px 0px 0px 4px rgba(255, 255, 255, 0.8);
+            border: 3px solid #e2e8f0;
+        }
+
+        .bubble-btn {
+            border-radius: 9999px;
+            font-family: 'Changa', sans-serif;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            user-select: none;
+        }
+
+        .bubble-btn-primary {
+            background: linear-gradient(145deg, #ff7eb3, #ff758c);
+            color: #ffffff;
+            box-shadow: 0 10px 0 #d64563, 0 15px 20px rgba(255, 117, 140, 0.4);
+            border: 2px solid #ffffff;
+        }
+
+        .bubble-btn-primary:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #d64563, 0 8px 10px rgba(255, 117, 140, 0.3);
+        }
+
+        .bubble-btn-blue {
+            background: linear-gradient(145deg, #38bdf8, #0284c7);
+            color: #ffffff;
+            box-shadow: 0 10px 0 #0369a1, 0 15px 20px rgba(2, 132, 199, 0.4);
+            border: 2px solid #ffffff;
+        }
+
+        .bubble-btn-blue:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #0369a1, 0 8px 10px rgba(2, 132, 199, 0.3);
+        }
+
+        .bubble-btn-copy {
+            background: linear-gradient(145deg, #38ef7d, #11998e);
+            color: #ffffff;
+            box-shadow: 0 10px 0 #0d7a71, 0 15px 20px rgba(17, 153, 142, 0.3);
+            border: 2px solid #ffffff;
+        }
+
+        .bubble-btn-copy:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #0d7a71, 0 6px 10px rgba(17, 153, 142, 0.2);
+        }
+
+        .bubble-btn-secondary {
+            background: linear-gradient(145deg, #a855f7, #8b5cf6);
+            color: #ffffff;
+            box-shadow: 0 8px 0 #6d28d9, 0 12px 18px rgba(139, 92, 246, 0.3);
+            border: 2px solid #ffffff;
+        }
+
+        .bubble-btn-secondary:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #6d28d9, 0 5px 8px rgba(139, 92, 246, 0.2);
+        }
+
+        .bubble-input {
+            border-radius: 2rem;
+            background: #f8fafc;
+            border: 3px solid #cbd5e1;
+            box-shadow: inset 4px 4px 8px #e2e8f0, inset -4px -4px 8px #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .bubble-input:focus {
+            border-color: #ff758c;
+            background: #ffffff;
+            outline: none;
+            box-shadow: inset 2px 2px 5px #e2e8f0, 0 0 0 5px rgba(255, 117, 140, 0.2);
+        }
+
+        .url-highlight {
+            color: #0284c7;
+            font-weight: 900;
+            background-color: #e0f2fe;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 2px dashed #0284c7;
+            display: inline-block;
+            margin: 2px 0;
+            word-break: break-all;
+        }
+
+        .file-highlight {
+            color: #d97706;
+            font-weight: 900;
+            background-color: #fef3c7;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 2px dashed #d97706;
+            display: inline-block;
+            margin: 2px 0;
+            word-break: break-all;
+        }
+
+        .bubble-tag {
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            border-radius: 9999px;
+            box-shadow: 3px 3px 6px #cbd5e1, -3px -3px 6px #ffffff;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col justify-between min-h-screen">
+
+    <div class="max-w-4xl mx-auto w-full space-y-8 my-auto">
+        
+        <!-- Header -->
+        <header class="text-center space-y-4">
+            <div class="inline-flex items-center gap-2 bubble-tag px-6 py-2 shadow-sm">
+                <span class="text-3xl">🎈</span>
+                <span class="text-lg font-black text-purple-700 title-font">مكتبة أوامر التيرموكس</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black title-font text-slate-800 tracking-wide">
+                My <span class="text-pink-500">Termux</span> <span class="text-purple-600">List</span>
+            </h1>
+            
+            <p class="text-slate-600 text-xl md:text-2xl font-bold max-w-xl mx-auto">
+                اختر الأداة، أدخل بيانات الفيديو، وانسخ أمر Termux الجاهز فوراً! ✨
+            </p>
+        </header>
+
+        <!-- Main Tools List -->
+        <main class="space-y-10">
+            
+            <!-- Tool 1: Direct URL Clip Cut -->
+            <section class="bubble-card p-6 md:p-10 space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-100 pb-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-3xl bg-pink-400 border-4 border-white flex items-center justify-center text-3xl shadow-md text-white font-black">
+                            1
+                        </div>
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 title-font">
+                                تقطيع 5 لقطات عبر رابط مباشر (URL)
+                            </h2>
+                            <p class="text-slate-500 font-bold text-base md:text-lg mt-1">
+                                تقطيع فيديو أونلاين مباشرة عبر الرابط دون تحميله أولاً
+                            </p>
+                        </div>
+                    </div>
+                    <span class="bg-pink-100 text-pink-600 text-base font-black px-5 py-2 rounded-full border-2 border-pink-200">
+                        Online URL
+                    </span>
+                </div>
+
+                <div class="space-y-3">
+                    <label for="videoUrl1" class="block text-xl font-black text-slate-700 title-font">
+                        📌 أدخل رابط الفيديو المباشر:
+                    </label>
+                    <textarea id="videoUrl1" rows="3" placeholder="الصق الرابط المباشر هنا..." class="bubble-input w-full p-5 text-lg md:text-xl font-bold text-slate-800 placeholder-slate-400 font-mono resize-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
+                    <button onclick="generateCommand1()" class="bubble-btn bubble-btn-primary text-2xl font-black py-5 px-8 flex items-center justify-center gap-3">
+                        <span class="text-3xl">⚙️</span>
+                        <span>توليد الأمر</span>
+                    </button>
+                    
+                    <button onclick="resetForm1()" class="bubble-btn bubble-btn-secondary text-xl font-black py-5 px-6 flex items-center justify-center gap-3">
+                        <span class="text-2xl">🧹</span>
+                        <span>مسح المدخلات</span>
+                    </button>
+                </div>
+
+                <div class="space-y-3 pt-2">
+                    <div class="flex justify-between items-center px-2">
+                        <span class="text-xl font-black text-slate-700 title-font">📝 الأمر الناتج لـ Termux:</span>
+                        <span id="toast1" class="text-base text-emerald-700 font-black bg-emerald-100 px-4 py-1.5 rounded-full border-2 border-emerald-300 opacity-0 transition-opacity duration-300">
+                            ✓ تم النسخ بنجاح!
+                        </span>
+                    </div>
+
+                    <div id="commandDisplay1" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-700 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
+                        <span class="text-slate-400 italic">// أدخل الرابط أعلاه ثم اضغط "توليد الأمر"...</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="copyToClipboard(fullCommand1, 'commandDisplay1', 'toast1')" class="bubble-btn bubble-btn-copy w-full text-2xl md:text-3xl font-black py-6 px-8 flex items-center justify-center gap-4">
+                        <span class="text-4xl">📋</span>
+                        <span>نسخ الأمر بالكامل</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Tool 2: Local Video Clip Cut -->
+            <section class="bubble-card p-6 md:p-10 space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-100 pb-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-3xl bg-sky-400 border-4 border-white flex items-center justify-center text-3xl shadow-md text-white font-black">
+                            2
+                        </div>
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 title-font">
+                                تقطيع 5 لقطات من فيديو محلي (في جهازك ⚡)
+                            </h2>
+                            <p class="text-slate-500 font-bold text-base md:text-lg mt-1">
+                                اختر ملف الفيديو لاستخراج اسمه الأصلي بدقة، أو قم بلصق الاسم مباشرةً
+                            </p>
+                        </div>
+                    </div>
+                    <span class="bg-sky-100 text-sky-600 text-base font-black px-5 py-2 rounded-full border-2 border-sky-200">
+                        Local Video
+                    </span>
+                </div>
+
+                <!-- Input methods -->
+                <div class="space-y-4">
+                    <label class="block text-xl font-black text-slate-700 title-font">
+                        📁 اسم ملف الفيديو الأصلي:
+                    </label>
+
+                    <div class="space-y-3">
+                        <div class="flex flex-col sm:flex-row items-center gap-3">
+                            <label for="localVideoInput" class="bubble-btn bubble-btn-blue text-lg font-black py-4 px-6 cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto shrink-0">
+                                <span class="text-2xl">🎬</span>
+                                <span>اختيار الملف تلقائياً</span>
+                            </label>
+                            <input type="file" id="localVideoInput" accept="video/*" class="hidden" onchange="handleFileSelect(event)">
+
+                            <span class="text-slate-400 font-bold hidden sm:inline">أو</span>
+
+                            <input type="text" id="manualFileNameInput" placeholder="الصق أو اكتب اسم الفيديو بالكامل هنا (مثال: my_video.mp4)..." class="bubble-input w-full p-4 font-mono text-base md:text-lg text-slate-800 font-bold" oninput="cleanAndSetFileName(this.value)">
+                        </div>
+
+                        <!-- Info tag of active name -->
+                        <div id="activeFileTag" class="text-slate-600 font-bold text-sm md:text-base bg-amber-50 px-4 py-2 rounded-xl border border-amber-200 hidden flex items-center gap-2">
+                            <span>📌 الاسم المعتمد حالياً:</span>
+                            <span id="activeFileName" class="text-amber-800 font-mono font-black break-all"></span>
+                        </div>
+                    </div>
+
+                    <!-- Directory Path Selection -->
+                    <div class="pt-2 space-y-2">
+                        <label for="dirPathInput" class="block text-lg font-bold text-slate-700 title-font">
+                            📍 موقع مجلد الفيديو داخل الهاتف:
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input type="text" id="dirPathInput" value="/storage/emulated/0/Download" class="bubble-input w-full p-4 font-mono text-base md:text-lg text-slate-800 font-bold">
+                            <select onchange="document.getElementById('dirPathInput').value = this.value" class="bubble-input p-4 font-bold text-slate-700 bg-white cursor-pointer sm:w-64">
+                                <option value="/storage/emulated/0/Download">Download (الافتراضي)</option>
+                                <option value="/storage/emulated/0/Download/MEGA Downloads">MEGA Downloads</option>
+                                <option value="/storage/emulated/0/DCIM/Camera">DCIM / Camera</option>
+                                <option value="/storage/emulated/0/Movies">Movies</option>
+                                <option value="/storage/emulated/0/Telegram">Telegram</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
+                    <button onclick="generateCommand2()" class="bubble-btn bubble-btn-blue text-2xl font-black py-5 px-8 flex items-center justify-center gap-3">
+                        <span class="text-3xl">⚡</span>
+                        <span>توليد أمر الفيديو المحلي</span>
+                    </button>
+                    
+                    <button onclick="resetForm2()" class="bubble-btn bubble-btn-secondary text-xl font-black py-5 px-6 flex items-center justify-center gap-3">
+                        <span class="text-2xl">🧹</span>
+                        <span>مسح المدخلات</span>
+                    </button>
+                </div>
+
+                <!-- Command Display Box -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex justify-between items-center px-2">
+                        <span class="text-xl font-black text-slate-700 title-font">📝 الأمر الناتج لـ Termux:</span>
+                        <span id="toast2" class="text-base text-emerald-700 font-black bg-emerald-100 px-4 py-1.5 rounded-full border-2 border-emerald-300 opacity-0 transition-opacity duration-300">
+                            ✓ تم النسخ بنجاح!
+                        </span>
+                    </div>
+
+                    <div id="commandDisplay2" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-700 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
+                        <span class="text-slate-400 italic">// اختر الفيديو أو أدخل اسمه أعلاه ثم اضغط "توليد أمر الفيديو المحلي"...</span>
+                    </div>
+                </div>
+
+                <!-- Copy Command Button -->
+                <div class="pt-2">
+                    <button onclick="copyToClipboard(fullCommand2, 'commandDisplay2', 'toast2')" class="bubble-btn bubble-btn-copy w-full text-2xl md:text-3xl font-black py-6 px-8 flex items-center justify-center gap-4">
+                        <span class="text-4xl">📋</span>
+                        <span>نسخ الأمر بالكامل</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Card Placeholder for Next Tools -->
+            <section class="bubble-card p-8 text-center bg-slate-50/50 border-dashed border-4 border-slate-200">
+                <div class="space-y-2">
+                    <span class="text-4xl">➕</span>
+                    <h3 class="text-2xl font-black text-slate-400 title-font">أداة جديدة قريباً...</h3>
+                    <p class="text-slate-400 font-bold text-base">يمكنك إضافة أداة تحويل، ضغط، أو تنزيل وسائط هنا لاحقاً</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-500 font-bold text-base pt-6">
+            <p>My Termux List &copy; 2026</p>
+        </footer>
+
+    </div>
+
+    <script>
+        let fullCommand1 = "";
+        let fullCommand2 = "";
+        let currentFileName = "";
+
+        // Tool 1 Logic
+        function generateCommand1() {
+            const rawUrl = document.getElementById('videoUrl1').value.trim();
+            const display = document.getElementById('commandDisplay1');
+
+            if (!rawUrl) {
+                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى إدخال رابط الفيديو أولاً في الصندوق أعلاه!</span>';
+                fullCommand1 = "";
+                return;
+            }
+
+            const cleanUrl = rawUrl.replace(/^['"]|['"]$/g, '');
+            const prefix = `cd "/storage/emulated/0/Download/MEGA Downloads" && LOCAL_URL='`;
+            const suffix = `' && DURATION=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$LOCAL_URL") && echo "Video duration: \${DURATION}s" && RANGES=("0 0.20" "0.30 0.45" "0.45 0.60" "0.60 0.80" "0.80 0.95") && i=1 && for RANGE in "\${RANGES[@]}"; do set -- $RANGE; MIN=$(awk -v d="$DURATION" -v p="$1" 'BEGIN{printf "%.0f",d*p}'); MAX=$(awk -v d="$DURATION" -v p="$2" 'BEGIN{printf "%.0f",d*p}'); MAXSTART=$(awk -v d="$DURATION" 'BEGIN{printf "%.0f",d-60}'); [ "$MAX" -gt "$MAXSTART" ] && MAX="$MAXSTART"; [ "$MIN" -gt "$MAX" ] && MIN="$MAX"; START=$((MIN + RANDOM % (MAX-MIN+1))); OUT="Clip_\${i}_60s.mp4"; echo "Clip $i → \${START}s"; ffmpeg -y -ss "$START" -i "$LOCAL_URL" -t 60 -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"; i=$((i+1)); done`;
+
+            fullCommand1 = prefix + cleanUrl + suffix;
+            display.innerHTML = `${escapeHtml(prefix)}<span class="url-highlight">${escapeHtml(cleanUrl)}</span>${escapeHtml(suffix)}`;
+        }
+
+        function resetForm1() {
+            document.getElementById('videoUrl1').value = '';
+            document.getElementById('commandDisplay1').innerHTML = '<span class="text-slate-400 italic">// أدخل الرابط أعلاه ثم اضغط "توليد الأمر"...</span>';
+            fullCommand1 = "";
+        }
+
+        // Tool 2 Logic
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Remove fakepath or full directory paths if present
+                let extractedName = file.name.replace(/^.*[\\\/]/, '');
+                cleanAndSetFileName(extractedName);
+                document.getElementById('manualFileNameInput').value = extractedName;
+            }
+        }
+
+        function cleanAndSetFileName(rawVal) {
+            let cleaned = rawVal.trim().replace(/^['"]|['"]$/g, '');
+            // Clean paths if full path was pasted accidentally
+            cleaned = cleaned.replace(/^.*[\\\/]/, '');
+            currentFileName = cleaned;
+
+            const fileTag = document.getElementById('activeFileTag');
+            const fileText = document.getElementById('activeFileName');
+
+            if (cleaned) {
+                fileText.textContent = cleaned;
+                fileTag.classList.remove('hidden');
+            } else {
+                fileTag.classList.add('hidden');
+            }
+        }
+
+        function generateCommand2() {
+            const display = document.getElementById('commandDisplay2');
+            const dirPath = document.getElementById('dirPathInput').value.trim() || "/storage/emulated/0/Download";
+            
+            if (!currentFileName) {
+                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى اختيار ملف الفيديو أو لصق اسمه الأصلي بالكامل أولاً!</span>';
+                fullCommand2 = "";
+                return;
+            }
+
+            const prefix = `(cd "${dirPath}" && LOCAL_URL="./`;
+            const middle = `${currentFileName}`;
+            const suffix = `" && DURATION=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$LOCAL_URL") && echo "Video duration: \${DURATION}s" && RANGES=("0 0.20" "0.30 0.45" "0.45 0.60" "0.60 0.80" "0.80 0.95") && i=1 && for RANGE in "\${RANGES[@]}"; do set -- $RANGE; MIN=$(awk -v d="$DURATION" -v p="$1" 'BEGIN{printf "%.0f",d*p}'); MAX=$(awk -v d="$DURATION" -v p="$2" 'BEGIN{printf "%.0f",d*p}'); MAXSTART=$(awk -v d="$DURATION" 'BEGIN{printf "%.0f",d-60}'); [ "$MAX" -gt "$MAXSTART" ] && MAX="$MAXSTART"; [ "$MIN" -gt "$MAX" ] && MIN="$MAX"; START=$((MIN + RANDOM % (MAX-MIN+1))); OUT="Clip_\${i}_60s.mp4"; echo "Clip $i → \${START}s"; ffmpeg -y -ss "$START" -i "$LOCAL_URL" -t 60 -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"; i=$((i+1)); done)`;
+
+            fullCommand2 = prefix + middle + suffix;
+            display.innerHTML = `${escapeHtml(prefix)}<span class="file-highlight">${escapeHtml(middle)}</span>${escapeHtml(suffix)}`;
+        }
+
+        function resetForm2() {
+            document.getElementById('localVideoInput').value = '';
+            document.getElementById('manualFileNameInput').value = '';
+            document.getElementById('dirPathInput').value = '/storage/emulated/0/Download';
+            document.getElementById('activeFileTag').classList.add('hidden');
+            document.getElementById('commandDisplay2').innerHTML = '<span class="text-slate-400 italic">// اختر الفيديو أو أدخل اسمه أعلاه ثم اضغط "توليد أمر الفيديو المحلي"...</span>';
+            currentFileName = "";
+            fullCommand2 = "";
+        }
+
+        // Shared Copy Helper
+        function copyToClipboard(commandText, displayId, toastId) {
+            if (!commandText) {
+                const display = document.getElementById(displayId);
+                display.innerHTML = '<span class="text-amber-600 font-black">// ⚠️ اضغط على زر توليد الأمر أولاً لتتمكن من النسخ!</span>';
+                return;
+            }
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(commandText).then(() => showToast(toastId)).catch(() => fallbackCopy(commandText, toastId));
+            } else {
+                fallbackCopy(commandText, toastId);
+            }
+        }
+
+        function fallbackCopy(text, toastId) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(toastId);
+            } catch (err) {
+                alert('تعذر النسخ التلقائي، يرجى التحديد والنسخ يدوياً.');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(toastId) {
+            const toast = document.getElementById(toastId);
+            toast.classList.remove('opacity-0');
+            setTimeout(() => toast.classList.add('opacity-0'), 2500);
+        }
+
+        function escapeHtml(string) {
+            return string.replace(/&/g, "&amp;")
+                         .replace(/</g, "&lt;")
+                         .replace(/>/g, "&gt;")
+                         .replace(/"/g, "&quot;")
+                         .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
