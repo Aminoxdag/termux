@@ -320,12 +320,85 @@
                 </div>
             </section>
 
-            <!-- Card Placeholder for Next Tools -->
-            <section class="bubble-card p-8 text-center bg-slate-50/50 border-dashed border-4 border-slate-200">
-                <div class="space-y-2">
-                    <span class="text-4xl">➕</span>
-                    <h3 class="text-2xl font-black text-slate-400 title-font">أداة جديدة قريباً...</h3>
-                    <p class="text-slate-400 font-bold text-base">يمكنك إضافة أداة تحويل، ضغط، أو تنزيل وسائط هنا لاحقاً</p>
+            <!-- Tool 3: Custom Duration Clip Extractor -->
+            <section class="bubble-card p-6 md:p-10 space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-100 pb-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-3xl bg-purple-500 border-4 border-white flex items-center justify-center text-3xl shadow-md text-white font-black">
+                            3
+                        </div>
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 title-font">
+                                تقطيع لقطات بمدد مخصصة (بداية ونهاية) ✂️
+                            </h2>
+                            <p class="text-slate-500 font-bold text-base md:text-lg mt-1">
+                                حدد زمن بداية ونهاية كل لقطة يدوياً، مع إمكانية إضافة لقطات متعددة
+                            </p>
+                        </div>
+                    </div>
+                    <span class="bg-purple-100 text-purple-600 text-base font-black px-5 py-2 rounded-full border-2 border-purple-200">
+                        Custom Duration
+                    </span>
+                </div>
+
+                <!-- URL Input -->
+                <div class="space-y-3">
+                    <label for="videoUrl3" class="block text-xl font-black text-slate-700 title-font">
+                        📌 أدخل رابط الفيديو المباشر (URL):
+                    </label>
+                    <textarea id="videoUrl3" rows="3" placeholder="الصق الرابط المباشر هنا..." class="bubble-input w-full p-5 text-lg md:text-xl font-bold text-slate-800 placeholder-slate-400 font-mono resize-none"></textarea>
+                </div>
+
+                <!-- Clips Range Container -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center flex-wrap gap-2">
+                        <label class="block text-xl font-black text-slate-700 title-font">
+                            ⏱️ تحديد أوقات اللقطات (من - إلى):
+                        </label>
+                        <button type="button" onclick="addClipRow()" class="bubble-btn bubble-btn-secondary text-base md:text-lg font-black py-3 px-6 flex items-center gap-2">
+                            <span class="text-2xl">➕</span>
+                            <span>إضافة لقطة أخرى</span>
+                        </button>
+                    </div>
+
+                    <div id="clipRowsContainer" class="space-y-3">
+                        <!-- Dynamic Rows injected via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
+                    <button onclick="generateCommand3()" class="bubble-btn bubble-btn-primary text-2xl font-black py-5 px-8 flex items-center justify-center gap-3">
+                        <span class="text-3xl">⚙️</span>
+                        <span>توليد الأمر المخصص</span>
+                    </button>
+                    
+                    <button onclick="resetForm3()" class="bubble-btn bubble-btn-secondary text-xl font-black py-5 px-6 flex items-center justify-center gap-3">
+                        <span class="text-2xl">🧹</span>
+                        <span>مسح المدخلات</span>
+                    </button>
+                </div>
+
+                <!-- Command Display Box -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex justify-between items-center px-2">
+                        <span class="text-xl font-black text-slate-700 title-font">📝 الأمر الناتج لـ Termux:</span>
+                        <span id="toast3" class="text-base text-emerald-700 font-black bg-emerald-100 px-4 py-1.5 rounded-full border-2 border-emerald-300 opacity-0 transition-opacity duration-300">
+                            ✓ تم النسخ بنجاح!
+                        </span>
+                    </div>
+
+                    <div id="commandDisplay3" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-700 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
+                        <span class="text-slate-400 italic">// أدخل الرابط وأوقات اللقطات أعلاه ثم اضغط "توليد الأمر المخصص"...</span>
+                    </div>
+                </div>
+
+                <!-- Copy Button -->
+                <div class="pt-2">
+                    <button onclick="copyToClipboard(fullCommand3, 'commandDisplay3', 'toast3')" class="bubble-btn bubble-btn-copy w-full text-2xl md:text-3xl font-black py-6 px-8 flex items-center justify-center gap-4">
+                        <span class="text-4xl">📋</span>
+                        <span>نسخ الأمر بالكامل</span>
+                    </button>
                 </div>
             </section>
 
@@ -341,7 +414,144 @@
     <script>
         let fullCommand1 = "";
         let fullCommand2 = "";
+        let fullCommand3 = "";
         let currentFileName = "";
+
+        let clipRowCount = 0;
+
+        function addClipRow(startVal = "00:01:40", endVal = "00:02:10") {
+            clipRowCount++;
+            const container = document.getElementById('clipRowsContainer');
+            const rowDiv = document.createElement('div');
+            rowDiv.className = "clip-row flex flex-col sm:flex-row items-center gap-3 bg-slate-50/80 p-4 rounded-3xl border-2 border-slate-200 transition-all shadow-sm";
+            rowDiv.id = `clipRow_${clipRowCount}`;
+
+            rowDiv.innerHTML = `
+                <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                    <span class="bg-purple-600 text-white font-black px-4 py-1.5 rounded-full text-base title-font">
+                        لقطة #${clipRowCount}
+                    </span>
+                </div>
+                <div class="grid grid-cols-2 gap-3 w-full">
+                    <div>
+                        <label class="block text-sm font-black text-slate-600 mb-1">من (بداية):</label>
+                        <input type="text" placeholder="00:01:40" value="${startVal}" class="clip-start bubble-input w-full p-3 font-mono text-center font-bold text-slate-800 text-base md:text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-black text-slate-600 mb-1">إلى (نهاية):</label>
+                        <input type="text" placeholder="00:02:10" value="${endVal}" class="clip-end bubble-input w-full p-3 font-mono text-center font-bold text-slate-800 text-base md:text-lg">
+                    </div>
+                </div>
+                <button type="button" onclick="removeClipRow('clipRow_${clipRowCount}')" class="delete-clip-btn text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-3 rounded-2xl border-2 border-rose-200 self-end sm:self-center transition-colors font-black flex items-center justify-center shrink-0">
+                    ❌
+                </button>
+            `;
+            container.appendChild(rowDiv);
+            updateClipRowLabels();
+        }
+
+        function removeClipRow(rowId) {
+            const row = document.getElementById(rowId);
+            if (row) {
+                row.remove();
+                updateClipRowLabels();
+            }
+        }
+
+        function updateClipRowLabels() {
+            const rows = document.querySelectorAll('#clipRowsContainer .clip-row');
+            rows.forEach((row, index) => {
+                const badge = row.querySelector('.bg-purple-600');
+                if (badge) badge.textContent = `لقطة #${index + 1}`;
+                
+                const deleteBtn = row.querySelector('.delete-clip-btn');
+                if (deleteBtn) {
+                    deleteBtn.style.display = rows.length === 1 ? 'none' : 'flex';
+                }
+            });
+        }
+
+        function formatClipTimeName(t) {
+            const clean = t.trim();
+            const parts = clean.split(':').map(Number);
+            if (parts.some(isNaN) || parts.length < 2) return clean.replace(/:/g, '-');
+            
+            if (parts.length === 3) {
+                let h = parts[0], m = parts[1], s = parts[2];
+                let name = '';
+                if (h > 0) name += `${h}h`;
+                if (m > 0 || h > 0) name += `${m}m`;
+                name += `${s}s`;
+                return name || clean.replace(/:/g, '-');
+            } else if (parts.length === 2) {
+                return `${parts[0]}m${parts[1]}s`;
+            }
+            return clean.replace(/:/g, '-');
+        }
+
+        function generateCommand3() {
+            const rawUrl = document.getElementById('videoUrl3').value.trim();
+            const display = document.getElementById('commandDisplay3');
+
+            if (!rawUrl) {
+                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى إدخال رابط الفيديو أولاً في الصندوق أعلاه!</span>';
+                fullCommand3 = "";
+                return;
+            }
+
+            const cleanUrl = rawUrl.replace(/^['"]|['"]$/g, '');
+            const rows = document.querySelectorAll('#clipRowsContainer .clip-row');
+            const clipPairs = [];
+
+            rows.forEach(row => {
+                const start = row.querySelector('.clip-start').value.trim();
+                const end = row.querySelector('.clip-end').value.trim();
+                if (start && end) {
+                    clipPairs.push({ start, end });
+                }
+            });
+
+            if (clipPairs.length === 0) {
+                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى إدخال وقت بداية ونهاية للقطة واحدة على الأقل!</span>';
+                fullCommand3 = "";
+                return;
+            }
+
+            const prefix = `cd "/storage/emulated/0/Download/MEGA Downloads" && LOCAL_URL='`;
+
+            if (clipPairs.length === 1) {
+                // Single Clip command structure
+                const start = clipPairs[0].start;
+                const end = clipPairs[0].end;
+                const outName = `Clip_${formatClipTimeName(start)}_to_${formatClipTimeName(end)}.mp4`;
+                
+                const midPart = `' && START="${start}" && END="${end}" && OUT="${outName}" && echo "Clip → $START إلى $END" && ffmpeg -y -ss "$START" -i "$LOCAL_URL" -to "$END" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"`;
+
+                fullCommand3 = prefix + cleanUrl + midPart;
+                display.innerHTML = `${escapeHtml(prefix)}<span class="url-highlight">${escapeHtml(cleanUrl)}</span>${escapeHtml(midPart)}`;
+            } else {
+                // Multiple Clips command structure
+                const clipsArrStr = clipPairs.map(c => `"${c.start} ${c.end}"`).join(' ');
+                const midPart = `' && CLIPS=(${clipsArrStr}) && i=1 && for CLIP in "\${CLIPS[@]}"; do set -- $CLIP; START="$1"; END="$2"; OUT="Clip_\${i}_\${START//:/-}_to_\${END//:/-}.mp4"; echo "Clip $i → $START إلى $END"; ffmpeg -y -ss "$START" -i "$LOCAL_URL" -to "$END" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"; i=$((i+1)); done`;
+
+                fullCommand3 = prefix + cleanUrl + midPart;
+                display.innerHTML = `${escapeHtml(prefix)}<span class="url-highlight">${escapeHtml(cleanUrl)}</span>${escapeHtml(midPart)}`;
+            }
+        }
+
+        function resetForm3() {
+            document.getElementById('videoUrl3').value = '';
+            document.getElementById('clipRowsContainer').innerHTML = '';
+            clipRowCount = 0;
+            addClipRow("00:01:40", "00:02:10");
+            document.getElementById('commandDisplay3').innerHTML = '<span class="text-slate-400 italic">// أدخل الرابط وأوقات اللقطات أعلاه ثم اضغط "توليد الأمر المخصص"...</span>';
+            fullCommand3 = "";
+        }
+
+        // Initialize Tool 3 default row on load
+        window.addEventListener('DOMContentLoaded', () => {
+            addClipRow("00:01:40", "00:02:10");
+        });
 
         // Tool 1 Logic
         function generateCommand1() {
@@ -472,3 +682,5 @@
     </script>
 </body>
 </html>
+
+```
