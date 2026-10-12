@@ -520,19 +520,19 @@
             const prefix = `cd "/storage/emulated/0/Download/MEGA Downloads" && LOCAL_URL='`;
 
             if (clipPairs.length === 1) {
-                // Single Clip command structure
+                // Single Clip command structure with DURATION calculation
                 const start = clipPairs[0].start;
                 const end = clipPairs[0].end;
                 const outName = `Clip_${formatClipTimeName(start)}_to_${formatClipTimeName(end)}.mp4`;
                 
-                const midPart = `' && START="${start}" && END="${end}" && OUT="${outName}" && echo "Clip → $START إلى $END" && ffmpeg -y -ss "$START" -i "$LOCAL_URL" -to "$END" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"`;
+                const midPart = `' && START="${start}" && END="${end}" && OUT="${outName}" && DURATION=$(awk -v s="$START" -v e="$END" 'BEGIN {split(s,a,":"); split(e,b,":"); print (b[1]*3600+b[2]*60+b[3])-(a[1]*3600+a[2]*60+a[3])}') && echo "Clip → $START إلى $END (Duration: \${DURATION}s)" && ffmpeg -y -ss "$START" -i "$LOCAL_URL" -t "$DURATION" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"`;
 
                 fullCommand3 = prefix + cleanUrl + midPart;
                 display.innerHTML = `${escapeHtml(prefix)}<span class="url-highlight">${escapeHtml(cleanUrl)}</span>${escapeHtml(midPart)}`;
             } else {
-                // Multiple Clips command structure
+                // Multiple Clips command structure with DURATION per clip
                 const clipsArrStr = clipPairs.map(c => `"${c.start} ${c.end}"`).join(' ');
-                const midPart = `' && CLIPS=(${clipsArrStr}) && i=1 && for CLIP in "\${CLIPS[@]}"; do set -- $CLIP; START="$1"; END="$2"; OUT="Clip_\${i}_\${START//:/-}_to_\${END//:/-}.mp4"; echo "Clip $i → $START إلى $END"; ffmpeg -y -ss "$START" -i "$LOCAL_URL" -to "$END" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"; i=$((i+1)); done`;
+                const midPart = `' && CLIPS=(${clipsArrStr}) && i=1 && for CLIP in "\${CLIPS[@]}"; do set -- $CLIP; START="$1"; END="$2"; OUT="Clip_\${i}_\${START//:/-}_to_\${END//:/-}.mp4"; DURATION=$(awk -v s="$START" -v e="$END" 'BEGIN {split(s,a,":"); split(e,b,":"); print (b[1]*3600+b[2]*60+b[3])-(a[1]*3600+a[2]*60+a[3])}'); echo "Clip $i → $START إلى $END (Duration: \${DURATION}s)"; ffmpeg -y -ss "$START" -i "$LOCAL_URL" -t "$DURATION" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"; i=$((i+1)); done`;
 
                 fullCommand3 = prefix + cleanUrl + midPart;
                 display.innerHTML = `${escapeHtml(prefix)}<span class="url-highlight">${escapeHtml(cleanUrl)}</span>${escapeHtml(midPart)}`;
@@ -682,5 +682,3 @@
     </script>
 </body>
 </html>
-
-```
