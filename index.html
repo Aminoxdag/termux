@@ -9,27 +9,28 @@
     <style>
         body { 
             font-family: 'Tajawal', sans-serif;
-            background-color: #f0f4f9;
+            background-color: #0b0f19;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.4) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(186, 230, 253, 0.5) 0%, transparent 25%),
-                radial-gradient(circle at 50% 50%, rgba(221, 214, 254, 0.4) 0%, transparent 30%);
+                radial-gradient(circle at 10% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
             min-height: 100vh;
+            color: #f8fafc;
         }
 
         .title-font {
             font-family: 'Changa', sans-serif;
         }
 
-        /* Claymorphism & Bubble Effect */
+        /* Dark Neumorphism & Bubble Effect */
         .bubble-card {
-            background: #ffffff;
+            background: #111827;
             border-radius: 2.5rem;
             box-shadow: 
-                20px 20px 60px #d4d9e0, 
-                -20px -20px 60px #ffffff,
-                inset 0px 0px 0px 4px rgba(255, 255, 255, 0.8);
-            border: 3px solid #e2e8f0;
+                16px 16px 40px #070a11, 
+                -16px -16px 40px #1b243b,
+                inset 0px 0px 0px 2px rgba(255, 255, 255, 0.05);
+            border: 2px solid #1f2937;
         }
 
         .bubble-btn {
@@ -41,97 +42,110 @@
         }
 
         .bubble-btn-primary {
-            background: linear-gradient(145deg, #ff7eb3, #ff758c);
+            background: linear-gradient(145deg, #ec4899, #db2777);
             color: #ffffff;
-            box-shadow: 0 10px 0 #d64563, 0 15px 20px rgba(255, 117, 140, 0.4);
-            border: 2px solid #ffffff;
+            box-shadow: 0 8px 0 #9d174d, 0 12px 18px rgba(236, 72, 153, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .bubble-btn-primary:active {
-            transform: translateY(6px);
-            box-shadow: 0 4px 0 #d64563, 0 8px 10px rgba(255, 117, 140, 0.3);
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #9d174d, 0 5px 8px rgba(236, 72, 153, 0.2);
         }
 
         .bubble-btn-blue {
-            background: linear-gradient(145deg, #38bdf8, #0284c7);
+            background: linear-gradient(145deg, #0ea5e9, #0284c7);
             color: #ffffff;
-            box-shadow: 0 10px 0 #0369a1, 0 15px 20px rgba(2, 132, 199, 0.4);
-            border: 2px solid #ffffff;
+            box-shadow: 0 8px 0 #0369a1, 0 12px 18px rgba(14, 165, 233, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .bubble-btn-blue:active {
-            transform: translateY(6px);
-            box-shadow: 0 4px 0 #0369a1, 0 8px 10px rgba(2, 132, 199, 0.3);
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #0369a1, 0 5px 8px rgba(14, 165, 233, 0.2);
         }
 
         .bubble-btn-copy {
-            background: linear-gradient(145deg, #38ef7d, #11998e);
+            background: linear-gradient(145deg, #10b981, #059669);
             color: #ffffff;
-            box-shadow: 0 10px 0 #0d7a71, 0 15px 20px rgba(17, 153, 142, 0.3);
-            border: 2px solid #ffffff;
+            box-shadow: 0 8px 0 #047857, 0 12px 18px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .bubble-btn-copy:active {
-            transform: translateY(6px);
-            box-shadow: 0 4px 0 #0d7a71, 0 6px 10px rgba(17, 153, 142, 0.2);
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #047857, 0 5px 8px rgba(16, 185, 129, 0.2);
         }
 
         .bubble-btn-secondary {
-            background: linear-gradient(145deg, #a855f7, #8b5cf6);
+            background: linear-gradient(145deg, #a855f7, #9333ea);
             color: #ffffff;
-            box-shadow: 0 8px 0 #6d28d9, 0 12px 18px rgba(139, 92, 246, 0.3);
-            border: 2px solid #ffffff;
+            box-shadow: 0 8px 0 #6b21a8, 0 12px 18px rgba(168, 85, 247, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .bubble-btn-secondary:active {
             transform: translateY(5px);
-            box-shadow: 0 3px 0 #6d28d9, 0 5px 8px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 3px 0 #6b21a8, 0 5px 8px rgba(168, 85, 247, 0.2);
+        }
+
+        .bubble-btn-accent {
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            color: #ffffff;
+            box-shadow: 0 6px 0 #b45309, 0 10px 15px rgba(245, 158, 11, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bubble-btn-accent:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #b45309, 0 4px 6px rgba(245, 158, 11, 0.2);
         }
 
         .bubble-input {
             border-radius: 2rem;
-            background: #f8fafc;
-            border: 3px solid #cbd5e1;
-            box-shadow: inset 4px 4px 8px #e2e8f0, inset -4px -4px 8px #ffffff;
+            background: #1f2937;
+            border: 3px solid #374151;
+            box-shadow: inset 3px 3px 6px #0b0f19, inset -3px -3px 6px #2d3748;
+            color: #f8fafc;
             transition: all 0.3s ease;
         }
 
         .bubble-input:focus {
-            border-color: #ff758c;
-            background: #ffffff;
+            border-color: #ec4899;
+            background: #111827;
             outline: none;
-            box-shadow: inset 2px 2px 5px #e2e8f0, 0 0 0 5px rgba(255, 117, 140, 0.2);
+            box-shadow: inset 2px 2px 4px #0b0f19, 0 0 0 4px rgba(236, 72, 153, 0.25);
         }
 
         .url-highlight {
-            color: #0284c7;
+            color: #38bdf8;
             font-weight: 900;
-            background-color: #e0f2fe;
+            background-color: rgba(14, 165, 233, 0.15);
             padding: 4px 10px;
             border-radius: 12px;
-            border: 2px dashed #0284c7;
+            border: 2px dashed #0ea5e9;
             display: inline-block;
             margin: 2px 0;
             word-break: break-all;
         }
 
         .file-highlight {
-            color: #d97706;
+            color: #f59e0b;
             font-weight: 900;
-            background-color: #fef3c7;
+            background-color: rgba(245, 158, 11, 0.15);
             padding: 4px 10px;
             border-radius: 12px;
-            border: 2px dashed #d97706;
+            border: 2px dashed #f59e0b;
             display: inline-block;
             margin: 2px 0;
             word-break: break-all;
         }
 
         .bubble-tag {
-            background: #f1f5f9;
-            border: 2px solid #e2e8f0;
+            background: #1f2937;
+            border: 2px solid #374151;
             border-radius: 9999px;
-            box-shadow: 3px 3px 6px #cbd5e1, -3px -3px 6px #ffffff;
+            box-shadow: 3px 3px 6px #070a11, -3px -3px 6px #2d3748;
         }
     </style>
 </head>
@@ -143,14 +157,14 @@
         <header class="text-center space-y-4">
             <div class="inline-flex items-center gap-2 bubble-tag px-6 py-2 shadow-sm">
                 <span class="text-3xl">🎈</span>
-                <span class="text-lg font-black text-purple-700 title-font">مكتبة أوامر التيرموكس</span>
+                <span class="text-lg font-black text-purple-400 title-font">مكتبة أوامر التيرموكس</span>
             </div>
             
-            <h1 class="text-5xl md:text-7xl font-black title-font text-slate-800 tracking-wide">
-                My <span class="text-pink-500">Termux</span> <span class="text-purple-600">List</span>
+            <h1 class="text-5xl md:text-7xl font-black title-font text-white tracking-wide">
+                My <span class="text-pink-500">Termux</span> <span class="text-purple-400">List</span>
             </h1>
             
-            <p class="text-slate-600 text-xl md:text-2xl font-bold max-w-xl mx-auto">
+            <p class="text-slate-400 text-xl md:text-2xl font-bold max-w-xl mx-auto">
                 اختر الأداة، أدخل بيانات الفيديو، وانسخ أمر Termux الجاهز فوراً! ✨
             </p>
         </header>
@@ -160,30 +174,30 @@
             
             <!-- Tool 1: Direct URL Clip Cut -->
             <section class="bubble-card p-6 md:p-10 space-y-6">
-                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-100 pb-5">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-800 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-3xl bg-pink-400 border-4 border-white flex items-center justify-center text-3xl shadow-md text-white font-black">
+                        <div class="w-16 h-16 rounded-3xl bg-pink-600 border-4 border-slate-900 flex items-center justify-center text-3xl shadow-md text-white font-black">
                             1
                         </div>
                         <div>
-                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 title-font">
+                            <h2 class="text-3xl md:text-4xl font-black text-white title-font">
                                 تقطيع 5 لقطات عبر رابط مباشر (URL)
                             </h2>
-                            <p class="text-slate-500 font-bold text-base md:text-lg mt-1">
+                            <p class="text-slate-400 font-bold text-base md:text-lg mt-1">
                                 تقطيع فيديو أونلاين مباشرة عبر الرابط دون تحميله أولاً
                             </p>
                         </div>
                     </div>
-                    <span class="bg-pink-100 text-pink-600 text-base font-black px-5 py-2 rounded-full border-2 border-pink-200">
+                    <span class="bg-pink-950 text-pink-400 text-base font-black px-5 py-2 rounded-full border-2 border-pink-900">
                         Online URL
                     </span>
                 </div>
 
                 <div class="space-y-3">
-                    <label for="videoUrl1" class="block text-xl font-black text-slate-700 title-font">
+                    <label for="videoUrl1" class="block text-xl font-black text-slate-200 title-font">
                         📌 أدخل رابط الفيديو المباشر:
                     </label>
-                    <textarea id="videoUrl1" rows="3" placeholder="الصق الرابط المباشر هنا..." class="bubble-input w-full p-5 text-lg md:text-xl font-bold text-slate-800 placeholder-slate-400 font-mono resize-none"></textarea>
+                    <textarea id="videoUrl1" rows="3" placeholder="الصق الرابط المباشر هنا..." class="bubble-input w-full p-5 text-lg md:text-xl font-bold text-white placeholder-slate-500 font-mono resize-none"></textarea>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
@@ -200,14 +214,14 @@
 
                 <div class="space-y-3 pt-2">
                     <div class="flex justify-between items-center px-2">
-                        <span class="text-xl font-black text-slate-700 title-font">📝 الأمر الناتج لـ Termux:</span>
-                        <span id="toast1" class="text-base text-emerald-700 font-black bg-emerald-100 px-4 py-1.5 rounded-full border-2 border-emerald-300 opacity-0 transition-opacity duration-300">
+                        <span class="text-xl font-black text-slate-200 title-font">📝 الأمر الناتج لـ Termux:</span>
+                        <span id="toast1" class="text-base text-emerald-400 font-black bg-emerald-950 px-4 py-1.5 rounded-full border-2 border-emerald-800 opacity-0 transition-opacity duration-300">
                             ✓ تم النسخ بنجاح!
                         </span>
                     </div>
 
-                    <div id="commandDisplay1" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-700 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
-                        <span class="text-slate-400 italic">// أدخل الرابط أعلاه ثم اضغط "توليد الأمر"...</span>
+                    <div id="commandDisplay1" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-300 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
+                        <span class="text-slate-500 italic">// أدخل الرابط أعلاه ثم اضغط "توليد الأمر"...</span>
                     </div>
                 </div>
 
@@ -221,28 +235,28 @@
 
             <!-- Tool 2: Local Video Clip Cut -->
             <section class="bubble-card p-6 md:p-10 space-y-6">
-                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-100 pb-5">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-800 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-3xl bg-sky-400 border-4 border-white flex items-center justify-center text-3xl shadow-md text-white font-black">
+                        <div class="w-16 h-16 rounded-3xl bg-sky-600 border-4 border-slate-900 flex items-center justify-center text-3xl shadow-md text-white font-black">
                             2
                         </div>
                         <div>
-                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 title-font">
+                            <h2 class="text-3xl md:text-4xl font-black text-white title-font">
                                 تقطيع 5 لقطات من فيديو محلي (في جهازك ⚡)
                             </h2>
-                            <p class="text-slate-500 font-bold text-base md:text-lg mt-1">
+                            <p class="text-slate-400 font-bold text-base md:text-lg mt-1">
                                 اختر ملف الفيديو لاستخراج اسمه الأصلي بدقة، أو قم بلصق الاسم مباشرةً
                             </p>
                         </div>
                     </div>
-                    <span class="bg-sky-100 text-sky-600 text-base font-black px-5 py-2 rounded-full border-2 border-sky-200">
+                    <span class="bg-sky-950 text-sky-400 text-base font-black px-5 py-2 rounded-full border-2 border-sky-900">
                         Local Video
                     </span>
                 </div>
 
                 <!-- Input methods -->
                 <div class="space-y-4">
-                    <label class="block text-xl font-black text-slate-700 title-font">
+                    <label class="block text-xl font-black text-slate-200 title-font">
                         📁 اسم ملف الفيديو الأصلي:
                     </label>
 
@@ -254,26 +268,26 @@
                             </label>
                             <input type="file" id="localVideoInput" accept="video/*" class="hidden" onchange="handleFileSelect(event)">
 
-                            <span class="text-slate-400 font-bold hidden sm:inline">أو</span>
+                            <span class="text-slate-500 font-bold hidden sm:inline">أو</span>
 
-                            <input type="text" id="manualFileNameInput" placeholder="الصق أو اكتب اسم الفيديو بالكامل هنا (مثال: my_video.mp4)..." class="bubble-input w-full p-4 font-mono text-base md:text-lg text-slate-800 font-bold" oninput="cleanAndSetFileName(this.value)">
+                            <input type="text" id="manualFileNameInput" placeholder="الصق أو اكتب اسم الفيديو بالكامل هنا (مثال: my_video.mp4)..." class="bubble-input w-full p-4 font-mono text-base md:text-lg text-white font-bold" oninput="cleanAndSetFileName(this.value)">
                         </div>
 
                         <!-- Info tag of active name -->
-                        <div id="activeFileTag" class="text-slate-600 font-bold text-sm md:text-base bg-amber-50 px-4 py-2 rounded-xl border border-amber-200 hidden flex items-center gap-2">
+                        <div id="activeFileTag" class="text-slate-300 font-bold text-sm md:text-base bg-amber-950/60 px-4 py-2 rounded-xl border border-amber-800/60 hidden flex items-center gap-2">
                             <span>📌 الاسم المعتمد حالياً:</span>
-                            <span id="activeFileName" class="text-amber-800 font-mono font-black break-all"></span>
+                            <span id="activeFileName" class="text-amber-400 font-mono font-black break-all"></span>
                         </div>
                     </div>
 
                     <!-- Directory Path Selection -->
                     <div class="pt-2 space-y-2">
-                        <label for="dirPathInput" class="block text-lg font-bold text-slate-700 title-font">
+                        <label for="dirPathInput" class="block text-lg font-bold text-slate-200 title-font">
                             📍 موقع مجلد الفيديو داخل الهاتف:
                         </label>
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <input type="text" id="dirPathInput" value="/storage/emulated/0/Download" class="bubble-input w-full p-4 font-mono text-base md:text-lg text-slate-800 font-bold">
-                            <select onchange="document.getElementById('dirPathInput').value = this.value" class="bubble-input p-4 font-bold text-slate-700 bg-white cursor-pointer sm:w-64">
+                            <input type="text" id="dirPathInput" value="/storage/emulated/0/Download" class="bubble-input w-full p-4 font-mono text-base md:text-lg text-white font-bold">
+                            <select onchange="document.getElementById('dirPathInput').value = this.value" class="bubble-input p-4 font-bold text-slate-200 bg-[#1f2937] cursor-pointer sm:w-64">
                                 <option value="/storage/emulated/0/Download">Download (الافتراضي)</option>
                                 <option value="/storage/emulated/0/Download/MEGA Downloads">MEGA Downloads</option>
                                 <option value="/storage/emulated/0/DCIM/Camera">DCIM / Camera</option>
@@ -300,14 +314,14 @@
                 <!-- Command Display Box -->
                 <div class="space-y-3 pt-2">
                     <div class="flex justify-between items-center px-2">
-                        <span class="text-xl font-black text-slate-700 title-font">📝 الأمر الناتج لـ Termux:</span>
-                        <span id="toast2" class="text-base text-emerald-700 font-black bg-emerald-100 px-4 py-1.5 rounded-full border-2 border-emerald-300 opacity-0 transition-opacity duration-300">
+                        <span class="text-xl font-black text-slate-200 title-font">📝 الأمر الناتج لـ Termux:</span>
+                        <span id="toast2" class="text-base text-emerald-400 font-black bg-emerald-950 px-4 py-1.5 rounded-full border-2 border-emerald-800 opacity-0 transition-opacity duration-300">
                             ✓ تم النسخ بنجاح!
                         </span>
                     </div>
 
-                    <div id="commandDisplay2" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-700 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
-                        <span class="text-slate-400 italic">// اختر الفيديو أو أدخل اسمه أعلاه ثم اضغط "توليد أمر الفيديو المحلي"...</span>
+                    <div id="commandDisplay2" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-300 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
+                        <span class="text-slate-500 italic">// اختر الفيديو أو أدخل اسمه أعلاه ثم اضغط "توليد أمر الفيديو المحلي"...</span>
                     </div>
                 </div>
 
@@ -322,37 +336,37 @@
 
             <!-- Tool 3: Custom Duration Clip Extractor -->
             <section class="bubble-card p-6 md:p-10 space-y-6">
-                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-100 pb-5">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b-4 border-slate-800 pb-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-3xl bg-purple-500 border-4 border-white flex items-center justify-center text-3xl shadow-md text-white font-black">
+                        <div class="w-16 h-16 rounded-3xl bg-purple-600 border-4 border-slate-900 flex items-center justify-center text-3xl shadow-md text-white font-black">
                             3
                         </div>
                         <div>
-                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 title-font">
+                            <h2 class="text-3xl md:text-4xl font-black text-white title-font">
                                 تقطيع لقطات بمدد مخصصة (بداية ونهاية) ✂️
                             </h2>
-                            <p class="text-slate-500 font-bold text-base md:text-lg mt-1">
-                                حدد زمن بداية ونهاية كل لقطة يدوياً، مع إمكانية إضافة لقطات متعددة
+                            <p class="text-slate-400 font-bold text-base md:text-lg mt-1">
+                                حدد زمن بداية ونهاية كل لقطة يدوياً، مع زر إضافة دقيقة تلقائية
                             </p>
                         </div>
                     </div>
-                    <span class="bg-purple-100 text-purple-600 text-base font-black px-5 py-2 rounded-full border-2 border-purple-200">
+                    <span class="bg-purple-950 text-purple-400 text-base font-black px-5 py-2 rounded-full border-2 border-purple-900">
                         Custom Duration
                     </span>
                 </div>
 
                 <!-- URL Input -->
                 <div class="space-y-3">
-                    <label for="videoUrl3" class="block text-xl font-black text-slate-700 title-font">
+                    <label for="videoUrl3" class="block text-xl font-black text-slate-200 title-font">
                         📌 أدخل رابط الفيديو المباشر (URL):
                     </label>
-                    <textarea id="videoUrl3" rows="3" placeholder="الصق الرابط المباشر هنا..." class="bubble-input w-full p-5 text-lg md:text-xl font-bold text-slate-800 placeholder-slate-400 font-mono resize-none"></textarea>
+                    <textarea id="videoUrl3" rows="3" placeholder="الصق الرابط المباشر هنا..." class="bubble-input w-full p-5 text-lg md:text-xl font-bold text-white placeholder-slate-500 font-mono resize-none"></textarea>
                 </div>
 
                 <!-- Clips Range Container -->
                 <div class="space-y-4">
                     <div class="flex justify-between items-center flex-wrap gap-2">
-                        <label class="block text-xl font-black text-slate-700 title-font">
+                        <label class="block text-xl font-black text-slate-200 title-font">
                             ⏱️ تحديد أوقات اللقطات (من - إلى):
                         </label>
                         <button type="button" onclick="addClipRow()" class="bubble-btn bubble-btn-secondary text-base md:text-lg font-black py-3 px-6 flex items-center gap-2">
@@ -382,14 +396,14 @@
                 <!-- Command Display Box -->
                 <div class="space-y-3 pt-2">
                     <div class="flex justify-between items-center px-2">
-                        <span class="text-xl font-black text-slate-700 title-font">📝 الأمر الناتج لـ Termux:</span>
-                        <span id="toast3" class="text-base text-emerald-700 font-black bg-emerald-100 px-4 py-1.5 rounded-full border-2 border-emerald-300 opacity-0 transition-opacity duration-300">
+                        <span class="text-xl font-black text-slate-200 title-font">📝 الأمر الناتج لـ Termux:</span>
+                        <span id="toast3" class="text-base text-emerald-400 font-black bg-emerald-950 px-4 py-1.5 rounded-full border-2 border-emerald-800 opacity-0 transition-opacity duration-300">
                             ✓ تم النسخ بنجاح!
                         </span>
                     </div>
 
-                    <div id="commandDisplay3" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-700 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
-                        <span class="text-slate-400 italic">// أدخل الرابط وأوقات اللقطات أعلاه ثم اضغط "توليد الأمر المخصص"...</span>
+                    <div id="commandDisplay3" class="bubble-input w-full min-h-[160px] max-h-[260px] p-6 font-mono text-base md:text-lg text-slate-300 overflow-y-auto whitespace-pre-wrap leading-relaxed break-all select-all font-bold">
+                        <span class="text-slate-500 italic">// أدخل الرابط وأوقات اللقطات أعلاه ثم اضغط "توليد الأمر المخصص"...</span>
                     </div>
                 </div>
 
@@ -423,31 +437,91 @@
             clipRowCount++;
             const container = document.getElementById('clipRowsContainer');
             const rowDiv = document.createElement('div');
-            rowDiv.className = "clip-row flex flex-col sm:flex-row items-center gap-3 bg-slate-50/80 p-4 rounded-3xl border-2 border-slate-200 transition-all shadow-sm";
+            rowDiv.className = "clip-row flex flex-col md:flex-row items-center gap-3 bg-[#182130] p-4 rounded-3xl border-2 border-slate-800 transition-all shadow-sm";
             rowDiv.id = `clipRow_${clipRowCount}`;
 
+            // Reversed order: Start (left) and End (right)
             rowDiv.innerHTML = `
-                <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                <div class="flex items-center gap-2 w-full md:w-auto shrink-0 justify-between md:justify-start">
                     <span class="bg-purple-600 text-white font-black px-4 py-1.5 rounded-full text-base title-font">
                         لقطة #${clipRowCount}
                     </span>
+                    <button type="button" onclick="addOneMinuteToRow('clipRow_${clipRowCount}')" class="bubble-btn bubble-btn-accent text-sm font-black py-2 px-4 flex items-center gap-1.5 shadow-sm">
+                        <span>⏱️ +1 دقيقة</span>
+                    </button>
                 </div>
                 <div class="grid grid-cols-2 gap-3 w-full">
                     <div>
-                        <label class="block text-sm font-black text-slate-600 mb-1">من (بداية):</label>
-                        <input type="text" placeholder="00:01:40" value="${startVal}" class="clip-start bubble-input w-full p-3 font-mono text-center font-bold text-slate-800 text-base md:text-lg">
+                        <label class="block text-sm font-black text-slate-400 mb-1">إلى (نهاية):</label>
+                        <input type="text" placeholder="00:02:10" value="${endVal}" class="clip-end bubble-input w-full p-3 font-mono text-center font-bold text-white text-base md:text-lg">
                     </div>
                     <div>
-                        <label class="block text-sm font-black text-slate-600 mb-1">إلى (نهاية):</label>
-                        <input type="text" placeholder="00:02:10" value="${endVal}" class="clip-end bubble-input w-full p-3 font-mono text-center font-bold text-slate-800 text-base md:text-lg">
+                        <label class="block text-sm font-black text-slate-400 mb-1">من (بداية):</label>
+                        <input type="text" placeholder="00:01:40" value="${startVal}" class="clip-start bubble-input w-full p-3 font-mono text-center font-bold text-white text-base md:text-lg">
                     </div>
                 </div>
-                <button type="button" onclick="removeClipRow('clipRow_${clipRowCount}')" class="delete-clip-btn text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-3 rounded-2xl border-2 border-rose-200 self-end sm:self-center transition-colors font-black flex items-center justify-center shrink-0">
+                <button type="button" onclick="removeClipRow('clipRow_${clipRowCount}')" class="delete-clip-btn text-rose-400 hover:text-rose-200 bg-rose-950/60 hover:bg-rose-900 p-3 rounded-2xl border-2 border-rose-900 self-end md:self-center transition-colors font-black flex items-center justify-center shrink-0">
                     ❌
                 </button>
             `;
             container.appendChild(rowDiv);
             updateClipRowLabels();
+        }
+
+        // Feature: Add exactly 1 minute (60 seconds) to the start time and fill the end time automatically
+        function addOneMinuteToRow(rowId) {
+            const row = document.getElementById(rowId);
+            if (!row) return;
+
+            const startInput = row.querySelector('.clip-start');
+            const endInput = row.querySelector('.clip-end');
+            if (!startInput || !endInput) return;
+
+            let startVal = startInput.value.trim();
+            if (!startVal) {
+                startVal = "00:00:00";
+                startInput.value = startVal;
+            }
+
+            // Parse time string (supports HH:MM:SS or MM:SS)
+            const parts = startVal.split(':').map(Number);
+            let h = 0, m = 0, s = 0;
+
+            if (parts.length === 3 && !parts.some(isNaN)) {
+                h = parts[0];
+                m = parts[1];
+                s = parts[2];
+            } else if (parts.length === 2 && !parts.some(isNaN)) {
+                m = parts[0];
+                s = parts[1];
+            } else {
+                startInput.value = "00:01:40";
+                endInput.value = "00:02:40";
+                return;
+            }
+
+            // Convert total start time to total seconds, add 60 seconds (1 minute), then convert back
+            let totalSeconds = (h * 3600) + (m * 60) + s + 60;
+
+            let newH = Math.floor(totalSeconds / 3600);
+            let rem = totalSeconds % 3600;
+            let newM = Math.floor(rem / 60);
+            let newS = rem % 60;
+
+            let newEndVal = "";
+            if (parts.length === 3) {
+                newEndVal = `${String(newH).padStart(2, '0')}:${String(newM).padStart(2, '0')}:${String(newS).padStart(2, '0')}`;
+            } else {
+                if (newH > 0) {
+                    // If hours overflowed from mm:ss, format as hh:mm:ss
+                    newEndVal = `${String(newH).padStart(2, '0')}:${String(newM).padStart(2, '0')}:${String(newS).padStart(2, '0')}`;
+                } else {
+                    newEndVal = `${String(newM).padStart(2, '0')}:${String(newS).padStart(2, '0')}`;
+                }
+            }
+
+            // Keep start time intact, update end time with start + 1 minute
+            endInput.value = newEndVal;
         }
 
         function removeClipRow(rowId) {
@@ -494,7 +568,7 @@
             const display = document.getElementById('commandDisplay3');
 
             if (!rawUrl) {
-                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى إدخال رابط الفيديو أولاً في الصندوق أعلاه!</span>';
+                display.innerHTML = '<span class="text-rose-400 font-black">// ⚠️ يرجى إدخال رابط الفيديو أولاً في الصندوق أعلاه!</span>';
                 fullCommand3 = "";
                 return;
             }
@@ -512,7 +586,7 @@
             });
 
             if (clipPairs.length === 0) {
-                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى إدخال وقت بداية ونهاية للقطة واحدة على الأقل!</span>';
+                display.innerHTML = '<span class="text-rose-400 font-black">// ⚠️ يرجى إدخال وقت بداية ونهاية للقطة واحدة على الأقل!</span>';
                 fullCommand3 = "";
                 return;
             }
@@ -520,7 +594,6 @@
             const prefix = `cd "/storage/emulated/0/Download/MEGA Downloads" && LOCAL_URL='`;
 
             if (clipPairs.length === 1) {
-                // Single Clip command structure with DURATION calculation
                 const start = clipPairs[0].start;
                 const end = clipPairs[0].end;
                 const outName = `Clip_${formatClipTimeName(start)}_to_${formatClipTimeName(end)}.mp4`;
@@ -530,7 +603,6 @@
                 fullCommand3 = prefix + cleanUrl + midPart;
                 display.innerHTML = `${escapeHtml(prefix)}<span class="url-highlight">${escapeHtml(cleanUrl)}</span>${escapeHtml(midPart)}`;
             } else {
-                // Multiple Clips command structure with DURATION per clip
                 const clipsArrStr = clipPairs.map(c => `"${c.start} ${c.end}"`).join(' ');
                 const midPart = `' && CLIPS=(${clipsArrStr}) && i=1 && for CLIP in "\${CLIPS[@]}"; do set -- $CLIP; START="$1"; END="$2"; OUT="Clip_\${i}_\${START//:/-}_to_\${END//:/-}.mp4"; DURATION=$(awk -v s="$START" -v e="$END" 'BEGIN {split(s,a,":"); split(e,b,":"); print (b[1]*3600+b[2]*60+b[3])-(a[1]*3600+a[2]*60+a[3])}'); echo "Clip $i → $START إلى $END (Duration: \${DURATION}s)"; ffmpeg -y -ss "$START" -i "$LOCAL_URL" -t "$DURATION" -c copy -avoid_negative_ts make_zero -movflags +faststart -metadata creation_time="2026-05-28 07:22:00" "$OUT" && touch "$OUT" && am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d "file://$(pwd)/$OUT"; i=$((i+1)); done`;
 
@@ -544,11 +616,10 @@
             document.getElementById('clipRowsContainer').innerHTML = '';
             clipRowCount = 0;
             addClipRow("00:01:40", "00:02:10");
-            document.getElementById('commandDisplay3').innerHTML = '<span class="text-slate-400 italic">// أدخل الرابط وأوقات اللقطات أعلاه ثم اضغط "توليد الأمر المخصص"...</span>';
+            document.getElementById('commandDisplay3').innerHTML = '<span class="text-slate-500 italic">// أدخل الرابط وأوقات اللقطات أعلاه ثم اضغط "توليد الأمر المخصص"...</span>';
             fullCommand3 = "";
         }
 
-        // Initialize Tool 3 default row on load
         window.addEventListener('DOMContentLoaded', () => {
             addClipRow("00:01:40", "00:02:10");
         });
@@ -559,7 +630,7 @@
             const display = document.getElementById('commandDisplay1');
 
             if (!rawUrl) {
-                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى إدخال رابط الفيديو أولاً في الصندوق أعلاه!</span>';
+                display.innerHTML = '<span class="text-rose-400 font-black">// ⚠️ يرجى إدخال رابط الفيديو أولاً في الصندوق أعلاه!</span>';
                 fullCommand1 = "";
                 return;
             }
@@ -574,7 +645,7 @@
 
         function resetForm1() {
             document.getElementById('videoUrl1').value = '';
-            document.getElementById('commandDisplay1').innerHTML = '<span class="text-slate-400 italic">// أدخل الرابط أعلاه ثم اضغط "توليد الأمر"...</span>';
+            document.getElementById('commandDisplay1').innerHTML = '<span class="text-slate-500 italic">// أدخل الرابط أعلاه ثم اضغط "توليد الأمر"...</span>';
             fullCommand1 = "";
         }
 
@@ -582,7 +653,6 @@
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (file) {
-                // Remove fakepath or full directory paths if present
                 let extractedName = file.name.replace(/^.*[\\\/]/, '');
                 cleanAndSetFileName(extractedName);
                 document.getElementById('manualFileNameInput').value = extractedName;
@@ -591,7 +661,6 @@
 
         function cleanAndSetFileName(rawVal) {
             let cleaned = rawVal.trim().replace(/^['"]|['"]$/g, '');
-            // Clean paths if full path was pasted accidentally
             cleaned = cleaned.replace(/^.*[\\\/]/, '');
             currentFileName = cleaned;
 
@@ -611,7 +680,7 @@
             const dirPath = document.getElementById('dirPathInput').value.trim() || "/storage/emulated/0/Download";
             
             if (!currentFileName) {
-                display.innerHTML = '<span class="text-rose-500 font-black">// ⚠️ يرجى اختيار ملف الفيديو أو لصق اسمه الأصلي بالكامل أولاً!</span>';
+                display.innerHTML = '<span class="text-rose-400 font-black">// ⚠️ يرجى اختيار ملف الفيديو أو لصق اسمه الأصلي بالكامل أولاً!</span>';
                 fullCommand2 = "";
                 return;
             }
@@ -629,7 +698,7 @@
             document.getElementById('manualFileNameInput').value = '';
             document.getElementById('dirPathInput').value = '/storage/emulated/0/Download';
             document.getElementById('activeFileTag').classList.add('hidden');
-            document.getElementById('commandDisplay2').innerHTML = '<span class="text-slate-400 italic">// اختر الفيديو أو أدخل اسمه أعلاه ثم اضغط "توليد أمر الفيديو المحلي"...</span>';
+            document.getElementById('commandDisplay2').innerHTML = '<span class="text-slate-500 italic">// اختر الفيديو أو أدخل اسمه أعلاه ثم اضغط "توليد أمر الفيديو المحلي"...</span>';
             currentFileName = "";
             fullCommand2 = "";
         }
@@ -638,7 +707,7 @@
         function copyToClipboard(commandText, displayId, toastId) {
             if (!commandText) {
                 const display = document.getElementById(displayId);
-                display.innerHTML = '<span class="text-amber-600 font-black">// ⚠️ اضغط على زر توليد الأمر أولاً لتتمكن من النسخ!</span>';
+                display.innerHTML = '<span class="text-amber-400 font-black">// ⚠️ اضغط على زر توليد الأمر أولاً لتتمكن من النسخ!</span>';
                 return;
             }
 
